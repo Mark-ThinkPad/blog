@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Django实战之搭建个人博客(表单js判空篇) | Mark&#39;s blog</title>
+  
+  
+
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/xaoxuu/assets@master/favicon/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>Mark's blog</h1>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-home fa-fw'></i>&nbsp;首页
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/projects/"
+            
+            
+            id="projects">
+            <i class='fas fa-code-branch fa-fw'></i>&nbsp;项目
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/archives/"
+            
+              rel="nofollow"
+            
+            
+            id="archives">
+            <i class='fas fa-archive fa-fw'></i>&nbsp;归档
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          Mark's blog
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-home fa-fw'></i>&nbsp;首页
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;归档
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/books/"
+                  
+                  
+                  id="books">
+									<i class='fas fa-book-open fa-fw'></i>&nbsp;读书
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/about/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="about">
+									<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/projects/"
+                
+                
+                id="projects">
+								<i class='fas fa-code-branch fa-fw'></i>&nbsp;开源项目
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/books/"
+                
+                
+                id="books">
+								<i class='fas fa-book-open fa-fw'></i>&nbsp;读书专栏
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/friends/"
+                
+                  rel="nofollow"
+                
+                
+                id="friends">
+								<i class='fas fa-link fa-fw'></i>&nbsp;我的友链
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://xaoxuu.com/wiki/material-x/"
+                
+                  rel="nofollow"
+                
+                
+                id="https:xaoxuu.comwikimaterial-x">
+								<i class='fas fa-book fa-fw'></i>&nbsp;主题文档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/2019/03/18/django_blog2/">
+        Django实战之搭建个人博客(表单js判空篇)
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="https://mark-thinkpad.github.io" rel="nofollow">
+      
+        <img src="https://img.vim-cn.com/e5/755adedff8463a344e0870b440b718d4f4fa93.jpg">
+      
+      <p>Mark</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-03-18</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Programs/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Programs</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          <h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1><!-- TOC -->
+
+<ul>
+<li><a href="#content">Content</a><ul>
+<li><a href="#用途简介">用途简介</a></li>
+<li><a href="#开发环境">开发环境</a></li>
+<li><a href="#html部分">HTML部分</a></li>
+<li><a href="#js部分">js部分</a></li>
+<li><a href="#基本的实例讲完了-相信大家很快就能举一反三">基本的实例讲完了, 相信大家很快就能举一反三</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<hr>
+<a id="more"></a>
+<hr>
+<blockquote>
+<p>该系列文章源码来自: <a href="https://gitee.com/Mark-ThinkPad/newbie_blog" target="_blank" rel="noopener">博主第一次手撸博客(Django)</a><br>温馨提示: 该系列教程不提供前端布局和美化方面的内容, 博主本行是后端, 在我的项目中前端部分采用的框架是 <code>Materialize</code>, 是谷歌 <code>Material Design</code> 设计风格的前端框架, 欲知详情请点击上方提供的仓库地址, 源码采用<strong>WTFPL许可证</strong>开源</p>
+</blockquote>
+<hr>
+<h2 id="用途简介"><a href="#用途简介" class="headerlink" title="用途简介"></a>用途简介</h2><blockquote>
+<p>通过Ajax或者其他方式向后端API发送数据后, 后端API可能要执行较多的SQL操作, 我们知道, 为了不让服务器的身体被掏空(即CPU和I/O不堪重负), 我们要尽可能的保证向服务器发送的是有效的数据, 避免服务器资源 <code>白给</code> (wdnmd真就茄化了呗), 我们需要前端去做表单验证, 以免麻烦服务器多做一些不必要的后端验证导致SQL操作增加抢占服务器运算资源. 那么, 这篇教程带来的是 <code>使用js对表单数据判断是否为空</code></p>
+</blockquote>
+<hr>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><ul>
+<li>操作系统: <code>Manjaro Linux 18</code></li>
+<li>Python版本: <code>Python3</code> <blockquote>
+<p>提示: Manjaro把Python3作为默认的Python版本, 其他发行版可能默认版本是Python2, 如果默认为Python2, 以下出现的Python和pip命令请使用python3和pip3</p>
+</blockquote>
+</li>
+<li>Django版本: <code>v2.1.5</code></li>
+<li>jQuery版本: <code>v3.3.1</code></li>
+</ul>
+<hr>
+<h2 id="HTML部分"><a href="#HTML部分" class="headerlink" title="HTML部分"></a>HTML部分</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"col s-12"</span> <span class="attr">id</span>=<span class="string">"login-form"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"username"</span> <span class="attr">maxlength</span>=<span class="string">"8"</span> <span class="attr">required</span> <span class="attr">onchange</span>=<span class="string">"isEmpty()"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"username"</span>&gt;</span>用户名<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"password"</span> <span class="attr">maxlength</span>=<span class="string">"16"</span> <span class="attr">required</span> <span class="attr">onchange</span>=<span class="string">"isEmpty()"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"password"</span>&gt;</span>密码<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"login-button"</span> <span class="attr">disabled</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"reset"</span> <span class="attr">disabled</span>&gt;</span>重置<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>disabled</code> 是禁用的意思, 如果用在按钮上, 这个按钮可能会变灰而且肯定会点下去无效的, 我们默认禁用按钮, 防止有人恶趣味(#手动滑稽)</li>
+</ul>
+<blockquote>
+<p><code>onchang=&quot;isEmpty()&quot;</code> 是上一篇文章的彩蛋, 马上揭晓</p>
+</blockquote>
+<hr>
+<h2 id="js部分"><a href="#js部分" class="headerlink" title="js部分"></a>js部分</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isEmpty</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ($(<span class="string">'#username'</span>).val() !== <span class="string">""</span> &amp;&amp; $(<span class="string">'#password'</span>).val() !== <span class="string">""</span>) &#123;</span><br><span class="line">        $(<span class="string">'#login-button'</span>).removeAttr(<span class="string">'disabled'</span>);</span><br><span class="line">        $(<span class="string">'#reset-button'</span>).removeAttr(<span class="string">'disabled'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// alert('不输入全就想登录? Naive!');</span></span><br><span class="line">        $(<span class="string">'#login-button'</span>).attr(&#123;<span class="string">"disabled"</span>:<span class="string">"disabled"</span>&#125;);</span><br><span class="line">        $(<span class="string">'#reset-button'</span>).attr(&#123;<span class="string">"disabled"</span>:<span class="string">"disabled"</span>&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>$(&#39;#xxxx&#39;)</code> 是jQuery的元素选择器, <code>val()</code> 方法是用来获取 <code>&lt;input&gt;</code> 标签中被输入的值</li>
+<li>简单科普一下这个奇怪的 <code>!==</code> 不等于号, <a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434499190108eec0bdf14e704a09935cd112e501e31a000" target="_blank" rel="noopener">廖雪峰的js教程</a>, 总的来说, 传统的 <code>==</code> 等于号 和 <code>!=</code> 不等号存在设计缺陷, 为了避免一些不必要的问题, 等于号请全部使用 <code>===</code>, 不等于号请全部使用 <code>!==</code></li>
+<li><code>removeAttr()</code> 方法用来移除对应的HTML标签属性, <code>attr()</code> 方法用来添加对应的HTML标签属性.</li>
+</ul>
+<blockquote>
+<p>简单说一下思路: 利用监听 <code>change</code>事件, <code>change</code> 事件是在输入发生了变化时触发, 可以多次触发, 所以我们在change事件上绑定自定义函数. 首先是判断是否为空字符串, 如果所有input标签的值都为空字符串, 让按钮不可用, 如果所有input标签的值都不为空字符串, 才启用按钮.</p>
+</blockquote>
+<hr>
+<h2 id="基本的实例讲完了-相信大家很快就能举一反三"><a href="#基本的实例讲完了-相信大家很快就能举一反三" class="headerlink" title="基本的实例讲完了, 相信大家很快就能举一反三"></a>基本的实例讲完了, 相信大家很快就能举一反三</h2>
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <hr>
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-08-28T17:09:46+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>最后更新于 2019年8月28日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Linux/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Linux</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Django/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Django</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Web/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Web</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Python3/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Python3</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://mark-thinkpad.github.io/2019/03/18/django_blog2/&title=Django实战之搭建个人博客(表单js判空篇) | Mark's blog&pics=https://img.vim-cn.com/e5/755adedff8463a344e0870b440b718d4f4fa93.jpg&summary=Content
+
+
+Content
+用途简介
+开发环境
+HTML部分
+js部分
+基本的实例讲完了, 相信大家很快就能举一反三
+
+
+
+
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://mark-thinkpad.github.io/2019/03/18/django_blog2/&title=Django实战之搭建个人博客(表单js判空篇) | Mark's blog&pics=https://img.vim-cn.com/e5/755adedff8463a344e0870b440b718d4f4fa93.jpg&summary=Content
+
+
+Content
+用途简介
+开发环境
+HTML部分
+js部分
+基本的实例讲完了, 相信大家很快就能举一反三
+
+
+
+
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class='qrcode' rel="external nofollow noopener noreferrer" href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3cS3LbQAwFQN//0s42i5B++DlaNFcuSSanx1UDCED56yu+vv+6nt59+vzT9fTJpyc+PX3hwsPDwxssvfewhJcvMX/6+5rx8PDwrnnvx32+rN5Cq5uYhyg8PDy8T+Alx/H76+/bMQkweHh4eJ/Jm4SEycbh4eHhfRovv3VycOef7IWZk1oLHh4eXszLu0if8/NJfw8PDw9v3FXPg8S8ZDBpdz2uFg8PD++AN2/nT87nvMyRp8t4eHh4v8+bP35rFKB6t8fAg4eHh3fAm4eHpAibJ9Dlo79aTcHDw8Nb4uWJbN58ShLirfJHgY2Hh4c34FVT4UIKexaKCk/Ew8PDO+C9J7iTkaZqkWJS2ig0wPDw8PDGvOoQQG8cKi/jJmFgVLrFw8PDG/N6x3Q11U7uP0ncfwhdeHh4eKu80TBTPHaQ3z9/NwpLeHh4eGe8rZpndTwrWehohAsPDw/vgFdt8OePyYcAkntWf7fyhQIPDw9vn1dtQVXB+X2qIQcPDw/vgpcf4klZIQ8w8yJFFCTw8PDwDnjVJlYvGPSGCSbDDXh4eHh3vMIexMlxr4W2NUDQ/Mvg4eHh1V5v/lO8fLn5VS0oRyVgPDw8vFVetcnU27/quECvtPGP1eLh4eEd8PLAkCS+eSkhDwy9NeDh4eH9Dq93lE9Cy2jRvTwdDw8P74BXHZ/aTYurgSEqLuPh4eGd8SaBJE+y54208pAWHh4e3iqvdxxPDvq8VZa35R7fxcPDwzvgbTX184X22mDz++Dh4eHt8vJgkKez30vXwhbj4eHhnfGqh3KSZOcJ7qQkUZ6MwMPDw/tPvHnv/n2bqmn6cmDAw8PDO+BVF1otKOQjAj9sNx4eHt4Zr9r0qo5q5el4r7y7UGvBw8PDi3m9L/yTz1SXkg8uLMxq4eHh4b1dfwA6X7tgbByg3gAAAABJRU5ErkJggg=='>
+        
+          <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/wechat.png">
+        
+        </a>
+      
+    
+      
+        <a class='qrcode' rel="external nofollow noopener noreferrer" href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3cS3LbQAwFQN//0s42i5B++DlaNFcuSSanx1UDCED56yu+vv+6nt59+vzT9fTJpyc+PX3hwsPDwxssvfewhJcvMX/6+5rx8PDwrnnvx32+rN5Cq5uYhyg8PDy8T+Alx/H76+/bMQkweHh4eJ/Jm4SEycbh4eHhfRovv3VycOef7IWZk1oLHh4eXszLu0if8/NJfw8PDw9v3FXPg8S8ZDBpdz2uFg8PD++AN2/nT87nvMyRp8t4eHh4v8+bP35rFKB6t8fAg4eHh3fAm4eHpAibJ9Dlo79aTcHDw8Nb4uWJbN58ShLirfJHgY2Hh4c34FVT4UIKexaKCk/Ew8PDO+C9J7iTkaZqkWJS2ig0wPDw8PDGvOoQQG8cKi/jJmFgVLrFw8PDG/N6x3Q11U7uP0ncfwhdeHh4eKu80TBTPHaQ3z9/NwpLeHh4eGe8rZpndTwrWehohAsPDw/vgFdt8OePyYcAkntWf7fyhQIPDw9vn1dtQVXB+X2qIQcPDw/vgpcf4klZIQ8w8yJFFCTw8PDwDnjVJlYvGPSGCSbDDXh4eHh3vMIexMlxr4W2NUDQ/Mvg4eHh1V5v/lO8fLn5VS0oRyVgPDw8vFVetcnU27/quECvtPGP1eLh4eEd8PLAkCS+eSkhDwy9NeDh4eH9Dq93lE9Cy2jRvTwdDw8P74BXHZ/aTYurgSEqLuPh4eGd8SaBJE+y54208pAWHh4e3iqvdxxPDvq8VZa35R7fxcPDwzvgbTX184X22mDz++Dh4eHt8vJgkKez30vXwhbj4eHhnfGqh3KSZOcJ7qQkUZ6MwMPDw/tPvHnv/n2bqmn6cmDAw8PDO+BVF1otKOQjAj9sNx4eHt4Zr9r0qo5q5el4r7y7UGvBw8PDi3m9L/yTz1SXkg8uLMxq4eHh4b1dfwA6X7tgbByg3gAAAABJRU5ErkJggg=='>
+        
+          <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qrcode.png">
+        
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/2019/03/19/django_blog3/" rel="prev" title="Django实战之搭建个人博客(回车触发点击篇)">
+                                  
+                                      Django实战之搭建个人博客(回车触发点击篇)
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Linux/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a> <a class="tag" href="/tags/Django/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Django</a> <a class="tag" href="/tags/Web/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Web</a> <a class="tag" href="/tags/Python3/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Python3</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/2019/03/17/django_blog1/" rel="prev" title="Django实战之搭建个人博客(Ajax篇)">
+                                    
+                                        Django实战之搭建个人博客(Ajax篇)
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Linux/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a> <a class="tag" href="/tags/Django/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Django</a> <a class="tag" href="/tags/Web/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Web</a> <a class="tag" href="/tags/Python3/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Python3</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-spinner fa-spin fa-fw"></i>
+          </div>
+        </section>
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Django实战之搭建个人博客(表单js判空篇)',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+        
+          
+          
+            <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://img.vim-cn.com/e5/755adedff8463a344e0870b440b718d4f4fa93.jpg'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:zhouganqing2018@gmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/Mark-ThinkPad"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://twitter.com/LumiaExtraordin"
+              class="social fab fa-twitter flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://t.me/LumiaExtraordinary"
+              class="social fab fa-telegram flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=35189854"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Content"><span class="toc-text">Content</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用途简介"><span class="toc-text">用途简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境"><span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML部分"><span class="toc-text">HTML部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js部分"><span class="toc-text">js部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本的实例讲完了-相信大家很快就能举一反三"><span class="toc-text">基本的实例讲完了, 相信大家很快就能举一反三</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="/projects/" href="/projects/"
+          
+          
+          id="projects">
+          
+            <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
+          
+          开源项目
+        </a></li>
+      
+        <li><a class="flat-box" title="/books/" href="/books/"
+          
+          
+          id="books">
+          
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+          
+          读书专栏
+        </a></li>
+      
+        <li><a class="flat-box" title="/friends/" href="/friends/"
+          
+            rel="nofollow"
+          
+          
+          id="friends">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          我的友链
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          关于小站
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Basic/" href="/categories/Basic/"><div class='name'>Basic</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Play-on-Linux/" href="/categories/Play-on-Linux/"><div class='name'>Play_on_Linux</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Programs/" href="/categories/Programs/"><div class='name'>Programs</div><div class='badge'>(9)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Projects/" href="/categories/Projects/"><div class='name'>Projects</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Start-Linux/" href="/categories/Start-Linux/"><div class='name'>Start_Linux</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/books/" href="/categories/books/"><div class='name'>books</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/置顶消息/" href="/categories/置顶消息/"><div class='name'>置顶消息</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/CPP/" style="font-size: 14px; color: #999">CPP</a> <a href="/tags/Django/" style="font-size: 20.67px; color: #6c6c6c">Django</a> <a href="/tags/Linux/" style="font-size: 24px; color: #555">Linux</a> <a href="/tags/MySQL/" style="font-size: 14px; color: #999">MySQL</a> <a href="/tags/PyQt5/" style="font-size: 14px; color: #999">PyQt5</a> <a href="/tags/Python3/" style="font-size: 22.33px; color: #606060">Python3</a> <a href="/tags/QQ空间/" style="font-size: 14px; color: #999">QQ空间</a> <a href="/tags/TCP/" style="font-size: 14px; color: #999">TCP</a> <a href="/tags/Web/" style="font-size: 19px; color: #777">Web</a> <a href="/tags/beyond/" style="font-size: 15.67px; color: #8e8e8e">beyond</a> <a href="/tags/blog/" style="font-size: 14px; color: #999">blog</a> <a href="/tags/book/" style="font-size: 19px; color: #777">book</a> <a href="/tags/deepin-wine/" style="font-size: 14px; color: #999">deepin-wine</a> <a href="/tags/grub2/" style="font-size: 14px; color: #999">grub2</a> <a href="/tags/qq/" style="font-size: 14px; color: #999">qq</a> <a href="/tags/refind/" style="font-size: 14px; color: #999">refind</a> <a href="/tags/self/" style="font-size: 17.33px; color: #828282">self</a> <a href="/tags/terminal/" style="font-size: 14px; color: #999">terminal</a> <a href="/tags/tim/" style="font-size: 14px; color: #999">tim</a> <a href="/tags/主站点/" style="font-size: 14px; color: #999">主站点</a> <a href="/tags/双拼/" style="font-size: 14px; color: #999">双拼</a> <a href="/tags/自动点赞/" style="font-size: 14px; color: #999">自动点赞</a>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+
+
+  <section class='widget music'>
+    
+<header class='pure'>
+  <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;推荐音乐</div>
+  
+    <a class="rightBtn"
+    
+      rel="external nofollow noopener noreferrer"
+    
+    
+      target="_blank"
+    
+    href="https://music.163.com/#/user/home?id=35189854"
+    title="https://music.163.com/#/user/home?id=35189854">
+    <i class="far fa-heart fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+  <div class="aplayer"
+    data-theme="#1BCDFC"
+    
+    
+    data-mode="circulation"
+    data-server="netease"
+    data-type="playlist"
+    data-id="2945119589"
+    data-volume="0.7">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+
+
+    </div>
+  </section>
+
+
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="mailto:zhouganqing2018@gmail.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/Mark-ThinkPad"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/LumiaExtraordin"
+            class="social fab fa-twitter flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://t.me/LumiaExtraordinary"
+            class="social fab fa-telegram flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=35189854"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>
+    本站使用
+    <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a>
+    作为主题
+    
+      ，
+      总访问量为
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      次
+    
+    。
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        if ('.cover') {
+          $('.cover').backstretch(
+          ["https://img.vim-cn.com/6d/a0c9e6f9efad8b731cb7376504bd10d79d2053.jpg"],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        } else {
+          $.backstretch(
+          ["https://img.vim-cn.com/6d/a0c9e6f9efad8b731cb7376504bd10d79d2053.jpg"],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+    
+      <script src="https://cdn.jsdelivr.net/gh/xaoxuu/volantis@1.0.5/js/volantis.min.js"></script>
+    
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var notify = 'true' == true;
+  var verify = 'true' == true;
+  var valine = new Valine();
+  valine.init({
+    el: '#valine_container',
+    notify: notify,
+    verify: verify,
+    guest_info: guest_info,
+    
+    appId: "T1vFacrskdNgmQ7KDK9Wih7P-gzGzoHsz",
+    appKey: "z09THjdEHdpIe4YKobUQPu8c",
+    placeholder: "欢迎来评论哟~",
+    pageSize:'10',
+    avatar:'mp',
+    lang:'zh-cn',
+    highlight:'true'
+  })
+  </script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.5/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
